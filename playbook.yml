@@ -1,5 +1,5 @@
 ---
-- name: Install vim wget htop tmux
+- name: Install Vim Wget Htop Tmux
   apt:
     name="{{ item }}"
   with_items:
