@@ -1,0 +1,41 @@
+php_install_from_source: false
+php_version: "7.2"
+php_install_recommends: no
+php_packages_state: "latest"
+php_packages_extra:
+  - libpcre3-dev
+  - "php{{ php_version }}-apcu"
+  - "php{{ php_version }}-common"
+  - "php{{ php_version }}-intl"
+  - "php{{ php_version }}-cli"
+  - "php{{ php_version }}-dev"
+  - "php{{ php_version }}-fpm"
+  - "php{{ php_version }}-gd"
+  - "php{{ php_version }}-curl"
+  - "php{{ php_version }}-imap"
+  - "php{{ php_version }}-json"
+  - "php{{ php_version }}-memcache"
+  - "php{{ php_version }}-memcached"
+  - "php{{ php_version }}-mcrypt"
+  - "php{{ php_version }}-opcache"
+  - "php{{ php_version }}-pdo"
+  - "php{{ php_version }}-xml"
+  - "php{{ php_version }}-zip"
+  - "php{{ php_version }}-mysql"
+  - "php{{ php_version }}-ssh2"
+
+php_conf_paths:
+  - "/etc/php/{{ php_version }}/fpm"
+  - "/etc/php/{{ php_version }}/cli"
+php_extension_conf_paths:
+  - "/etc/php/{{ php_version }}/fpm/conf.d"
+  - "/etc/php/{{ php_version }}/cli/conf.d"
+
+php_date_timezone: "Europe/Moscow"
+php_display_errors: "On"
+php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+php_webserver_daemon: "nginx"
+php_enable_php_fpm: true
+php_fpm_daemon: "php{{ php_version }}-fpm"
+php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
+php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
