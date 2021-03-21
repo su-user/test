@@ -1,0 +1,44 @@
+---
+- name: Install vim wget htop tmux
+  apt:
+    name="{{ item }}"
+  with_items:
+      - vim
+      - wget
+      - htop
+      - tmux
+
+- name: Install Nginx
+  apt:
+    name=nginx
+    state=latest
+  template:
+    src=default.conf dest=/etc/nginx/conf.d/default.conf
+  notify:
+    - restart nginx
+    
+- name: Install apache2
+  apt:
+    name=apache2
+    state=latest
+  template:
+    src=000-default.conf dest=/etc/apache2/sites-available/000-default.conf
+  notify:
+    - restart apache2
+
+- name: Repo php5.6 add
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.sury.org/php/ stretch main
+    state: present
+
+- name: Install required packages
+  apt:
+    name="{{ item }}"
+  with_items:
+      - ca-certificates
+      - apt-transport-https
+
+- name: Install php5.6
+  apt:
+    name=php5.6
+    state=latest
